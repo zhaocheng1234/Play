@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div style="margin-left: 10%;width: 80%">
+    <p style="text-align: center;font-size: 20px"><strong>文件管理</strong></p>
+    <button id="uploadfile">文件上传</button>
+    <table id="message_mo" lay-filter="test"></table>
+</div>
+<button type="button" class="layui-btn" id="test1">
+    <i class="layui-icon">&#xe67c;</i>上传图片
+</button>
+
+<script src="https://heerey525.github.io/layui-v2.4.3/layui-v2.4.5/layui.js"></script>
+<script>
+    layui.use('upload', function(){
+        var upload = layui.upload;
+
+        //执行实例
+        var uploadInst = upload.render({
+            elem: '#test1' //绑定元素
+            ,url: 'http:8080//localhost:8080/file/fileupload' //上传接口
+            ,accept:'file'
+            ,done: function(res){
+                //上传完毕回调
+                alert("上传成功");
+            }
+            ,error: function(){
+                alert("上传失败");
+            }
+
+
+        });
+    });
+
+    var upload = layui.upload; //得到 upload 对象
+
+    //创建一个上传组件
+    upload.render({
+        elem: '#id'
+        ,url: 'http://localhost:8080/file/getfile'
+        ,text:{none: "未查询到上传记录"}
+        ,loading: true
+        ,done: function(res, index, upload){ //上传后的回调
+
+        }
+        ,accept: 'file' //允许上传的文件类型
+        //,size: 50 //最大允许上传的文件大小
+        //,……
+    })
+</body>
+</html>
